@@ -4,6 +4,9 @@ public interface ITurnContext
 {
     ITile GetTile(int y, int x);
 
+    int GetMapWidth();
+    int GetMapHeight();
+
     ITank[] GetTanks();
 
     IBullet[] GetBullets();

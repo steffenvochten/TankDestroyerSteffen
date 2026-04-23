@@ -18,6 +18,9 @@ public class PlayerTurnContext : ITurnContext
 
     public IWorld World { get; set; }
     public ITile GetTile(int y, int x) => World.GetTile(y, x);
+    public int GetMapWidth() => World.Width;
+
+    public int GetMapHeight()=> World.Height;
 
     public ITank[] GetTanks() => _game.Tanks.ToArray<ITank>();
 
