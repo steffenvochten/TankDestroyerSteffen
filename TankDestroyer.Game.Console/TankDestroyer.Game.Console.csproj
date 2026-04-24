@@ -9,21 +9,15 @@
 
   <ItemGroup>
     <Reference Include="TankDestroyer.API">
-      <HintPath>..\..\Build\TankDestroyer.API.dll</HintPath>
+      <HintPath>..\Build\TankDestroyer.API.dll</HintPath>
     </Reference>
     <Reference Include="TankDestroyer.Engine">
-      <HintPath>..\..\Build\TankDestroyer.Engine.dll</HintPath>
+      <HintPath>..\Build\TankDestroyer.Engine.dll</HintPath>
     </Reference>
   </ItemGroup>
     <PropertyGroup>
-        <OutputPath>..\..\Build</OutputPath>
+        <OutputPath>..\Build</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     </PropertyGroup>
-  <ItemGroup>
-    <None Include="..\config.json">
-      <Link>config.json</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
 </Project>

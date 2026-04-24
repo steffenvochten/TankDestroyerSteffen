@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TankDestroyer.Engine", "..\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HDJO.Bot", "..\Bots\HDJO.Bot\HDJO.Bot.csproj", "{264EE1B5-A712-4F05-ACBF-0C44E7278DD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TankDestroyer.Game.Console", "TankDestroyer.Game.Console\TankDestroyer.Game.Console.csproj", "{FA4FE637-A1B0-487A-A78B-7C3EB2ED0086}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TankDestroyer.Game.Console", "..\TankDestroyer.Game.Console\TankDestroyer.Game.Console.csproj", "{FA4FE637-A1B0-487A-A78B-7C3EB2ED0086}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
