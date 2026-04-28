@@ -2,7 +2,8 @@
 
 ## Overzicht
 
-Een nieuw spel in 3d of via de console. Bestuur een tank, schiet de andere tank dood.
+Een nieuw spel in 3d of via de console. Bestuur een tank, schiet de andere tanks dood.
+Maak je eigen bot en maak een PR naar de hoofdtak.
 
 ## Hoe de console game te draaien
 
