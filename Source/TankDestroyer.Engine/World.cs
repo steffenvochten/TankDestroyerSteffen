@@ -53,7 +53,7 @@ public class World : IWorld
     {
         string text = File.ReadAllText(filePath);
         World world = new World();
-        string[] lines = text.Split('\n');
+        string[] lines = text.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
         var infoLineParts = lines[0].Split(',');
         world.Name = infoLineParts[0];
 
