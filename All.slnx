@@ -43,6 +43,9 @@
     <Project Path="Bots/Laurens.Bot/Laurens.Bot.csproj">
       <BuildDependency Project="Source/TankDestroyer.API/TankDestroyer.API.csproj" />
     </Project>
+    <Project Path="Bots/PillenPower.Bot/PillenPower.Bot.csproj">
+      <BuildDependency Project="Source/TankDestroyer.API/TankDestroyer.API.csproj" />
+    </Project>
   </Folder>
   <Folder Name="/Bots/Example.Bot/">
     <Project Path="Bots/Example.Bot/LeeroyJenkins.Bot.csproj" />
