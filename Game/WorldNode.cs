@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 using TankDestroyer.API;
@@ -15,6 +16,8 @@ public partial class WorldNode : Node3D
 
 	public World World { get; set; }
 
+	private System.Collections.Generic.Dictionary<Vector2I, List<Node3D>> _sceneryNodes = new();
+
 
 	public override void _Ready()
 	{
@@ -24,6 +27,7 @@ public partial class WorldNode : Node3D
 	public void InitializeWorld()
 	{
 		GridMap.Clear();
+		_sceneryNodes.Clear();
 		for (int y = 0; y < World.Height; y++)
 		{
 			for (int x = 0; x < World.Width; x++)
@@ -34,6 +38,27 @@ public partial class WorldNode : Node3D
 
 		SpawnTrees();
 		SpawnBuildings();
+	}
+
+	public void UpdateWorld(World turnWorld)
+	{
+		for (int y = 0; y < turnWorld.Height; y++)
+		{
+			for (int x = 0; x < turnWorld.Width; x++)
+			{
+				var tile = turnWorld.GetTile(x, y);
+				GridMap.SetCellItem(new Vector3I(x, 0, y), (int)tile.TileType);
+
+				if (_sceneryNodes.TryGetValue(new Vector2I(x, y), out var nodes))
+				{
+					bool isVisible = tile.TileType == TileType.Tree || tile.TileType == TileType.Building;
+					foreach (var node in nodes)
+					{
+						node.Visible = isVisible;
+					}
+				}
+			}
+		}
 	}
 
 	private void SpawnBuildings()
@@ -52,6 +77,9 @@ public partial class WorldNode : Node3D
 			{
 				if (World.GetTile(x, y).TileType == TileType.Building)
 				{
+					var nodesAtLocation = new List<Node3D>();
+					_sceneryNodes[new Vector2I(x, y)] = nodesAtLocation;
+
 					for (int i = 0; i < 3; i++)
 					{
 						var node = new MeshInstance3D();
@@ -62,6 +90,7 @@ public partial class WorldNode : Node3D
 							y * 2f + 1f) + positions[i];
 						node.GlobalRotationDegrees = new Vector3(0, rotations[rand.Next(0, rotations.Length)], 0);
 						node.Scale *= 0.02f;
+						nodesAtLocation.Add(node);
 					}
 				}
 			}
@@ -83,6 +112,9 @@ public partial class WorldNode : Node3D
 			{
 				if (World.GetTile(x, y).TileType == TileType.Tree)
 				{
+					var nodesAtLocation = new List<Node3D>();
+					_sceneryNodes[new Vector2I(x, y)] = nodesAtLocation;
+
 					for (int i = 0; i < positions.Length; i++)
 					{
 						var node = TreeScene.Instantiate<Node3D>();
@@ -92,6 +124,7 @@ public partial class WorldNode : Node3D
 						node.GlobalRotationDegrees = new Vector3(0, (float)rand.NextDouble() * 360f, 0);
 						var scale = (float)rand.NextDouble() + 0.5f;
 						node.Scale *= scale;
+						nodesAtLocation.Add(node);
 					}
 				}
 			}
