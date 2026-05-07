@@ -9,6 +9,8 @@ public interface ITank
     bool Destroyed { get; }
     bool Fired { get; }
     int OwnerId { get;  }
+    int Ammo { get; }
+    int MaxAmmo { get; }
 }
 
 [Flags]

@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bpx25pyn6cyxo"]
+
+[resource]
+roughness_texture_channel = 4
+normal_enabled = true
+heightmap_enabled = true
+heightmap_scale = 1.0
