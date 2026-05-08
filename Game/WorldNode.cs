@@ -40,7 +40,7 @@ public partial class WorldNode : Node3D
 		SpawnBuildings();
 	}
 
-	public void UpdateWorld(World turnWorld)
+	public void UpdateWorld(World turnWorld, bool animated = false)
 	{
 		for (int y = 0; y < turnWorld.Height; y++)
 		{
@@ -52,6 +52,11 @@ public partial class WorldNode : Node3D
 				if (_sceneryNodes.TryGetValue(new Vector2I(x, y), out var nodes))
 				{
 					bool isVisible = tile.TileType == TileType.Tree || tile.TileType == TileType.Building;
+					if (animated && isVisible == false && nodes.Count > 0 && nodes[0].Visible)
+					{
+						SpawnExplosion(x, y);
+					}
+
 					foreach (var node in nodes)
 					{
 						node.Visible = isVisible;
@@ -59,6 +64,14 @@ public partial class WorldNode : Node3D
 				}
 			}
 		}
+	}
+
+	private void SpawnExplosion(int x, int y)
+	{
+		var explosion = GD.Load<PackedScene>("res://Explosion/explosion_1.tscn").Instantiate<GpuParticles3D>();
+		GetTree().Root.AddChild(explosion);
+		explosion.GlobalPosition = new Vector3((x * 2f) + 1f, 1.5f, y * 2f + 1f);
+		explosion.Emitting = true;
 	}
 
 	private void SpawnBuildings()

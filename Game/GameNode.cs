@@ -142,7 +142,7 @@ public partial class GameNode : Node
 	private void UpdateGameWorld(GameTurn turn)
 	{
 		_currentTurn = turn;
-		WorldNode.UpdateWorld(turn.World);
+		WorldNode.UpdateWorld(turn.World, true);
 		var newBullets = new List<BulletNode>();
 		var bulletNodes = BulletContainer.GetChildren().OfType<BulletNode>().ToArray();
 		var bullets = turn.Bullets;
